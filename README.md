@@ -1,32 +1,26 @@
-# KimYounghan - JPA
+# Java Persitent API
+김영한개발자님 JPA 강의 / 자바 ORM표준 JPA프로그래밍
+
 <br>
 
-
-## d
+## CONTENTS
+> * Ch1. JPA 시작<br>
+> * Ch2. 영속성 관리<br>
+> * Ch3. 컴포넌트<br>
+> * Ch4. 엔티티 매핑<br>
+> * Ch5. 연관관계 매핑<br>
+> * Ch6. 다양한 연관관계 매핑<br>
+> * Ch7. 고급 매핑<br>
+> * Ch8. 프록시와 연관관계 관리<br>
+> * Ch9. 값 타입<br>
+> * Ch10. 객체지향 쿼리 언어1<br>
 <br>
 
-## Architecture 
+## ENVIRONMENT
+> * Window 10<br>
+> * open JDK 1.8 + SPRING BOOT 2.1.12<br>
+> * Editor: InteliJ<br>
+> * Git<br>
 
-<img src="README_IMG/Architecture.png" width="800" height ="400"> 
-
-## Boot
-```
-Spring start
-Path : 
-Command Message : ./gradlew bootrun
-
-React start
-Path : /src/main/frontend
-Command Message : npm start
-```
-
-
-## React
-```
-React and MobX together are a powerful combination. 
-React renders the application state by providing mechanisms to translate it into a tree of renderable components. 
-MobX provides the mechanism to store and update the application state that React then uses.
-```
-
-Reference : https://mobx.js.org/README.html
-
+<br>
+<br>
