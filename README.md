@@ -3,6 +3,11 @@
 저자 : 김영한
 <br>
 
+
+## JPA Structure
+
+![JPA](https://user-images.githubusercontent.com/45196240/76701914-d6d67680-6708-11ea-9edd-14b69ee61143.JPG)
+
 ## CONTENTS
 > * Ch1. JPA 시작<br>
 > * Ch2. 영속성 관리<br>
