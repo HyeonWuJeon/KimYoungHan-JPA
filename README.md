@@ -1,6 +1,6 @@
 # Java Persitent API
-김영한개발자님 JPA 강의 / 자바 ORM표준 JPA프로그래밍
-
+자바 ORM표준 JPA프로그래밍 정리
+저자 : 김영한
 <br>
 
 ## CONTENTS
