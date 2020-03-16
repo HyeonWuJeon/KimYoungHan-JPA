@@ -25,6 +25,10 @@
 > * open JDK 1.8 + SPRING BOOT 2.1.12<br>
 > * Editor: InteliJ<br>
 > * Git<br>
+<br>
 
+### reference
+
+- [Getter & Setter](https://github.com/kimchigame/Today-I-Reaned/blob/master/Getter&Setter.md)
 <br>
 <br>
