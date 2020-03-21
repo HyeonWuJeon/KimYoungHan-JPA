@@ -1,0 +1,47 @@
+ 1. 객체 테이블매핑
+ 2. 필드 컬럼매핑
+ 3. 기본키패밍 pk
+
+ JPA에서는 애플리케이션 로딩시점에 DB테이블을 생성할 수 있게 지원해준다.
+ local pc에서 개발할때 도움이된다.
+ 
+ JPA에서 객체매핑을 해놓으면 애플리케이션생성시 DDL을만들어줌
+ @entity가 매핑된애들인 테이블을 전부 만들어냄.
+  
+hibernate.hbm2ddl.auto 속성
+create-drop : 생성후 어플리케이션 종료시 삭제
+update : 테이블과 엔티티 매핑정보를 비교해서 변경사항만 수정
+vailidate :테이블과 엔티티 정보비교후 차이가 있으면 애플리케이션을 실행하지 않는다. DDL은 수정하지 않는다.
+
+
+개발초기단계 create or update 로 자신 local에서 
+
+테스트 서버는 update 또는 validate
+
+-- 하지만 개발서버나 테스트 서버여도 create, update 쓰지 말아라. 써봣자 vali정도..
+
+*중요
+운영되는 서버에는 무조건 validate 또는 none 설정. 
+몇천만건이 있는상태에서 alter을 잘못치면 시스템이 중단됨. 애플리케이션 로딩시점에 시스템이 자동으로alter을 쳐주는것은 굉장히 위험한다
+
+alter 스크립트를 직접만든걸 db에 테스트서버에 직접반영을 해봐야한다. 테스트서버나 개발서버에도 왼만하면 적용하지말라.
+
+제일중요한것은 웹어플리케이션 계정은 alter나 drop을 못하도록 계정자체를 분리해야한다.
+
+DDL
+@Table(name =   ) 런타임에 영향을준다 인서트 업데이트
+DDL생성 기능은 DDL을 자동생성할때만 사용되고 jpa실행로직에는 영향을 주지 않는다.
+*length도 DDL생성기능인데 validation하는 경우도있다.
+
+
+데이터베이스에는 date, time ,timestamp3가지를 구분해서 쓰기때문에
+@Temporal(TemporalType.TIMESTAMP)
+
+@Lob (Clob,Dlob) DB에 varchar을 넘어서는 큰 데이터를 넣고싶은 경우
+
+@Transint DB컬럼에 insert가 안된다. 메모리에서만사용
+
+@Column(unique) console에 개발자가 알아보지 못하는 문자가 찍힌다. 그리고 복합컬럼에서도 사용불가하여 Table(uniqueConstraints)사용
+
+enum Type에서 oridinary를 절대 쓰지말아라. 필수로STRING 사용
+
