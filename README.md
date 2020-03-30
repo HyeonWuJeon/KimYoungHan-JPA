@@ -29,6 +29,6 @@
 
 ### reference
 
-- [Getter & Setter](https://github.com/kimchigame/Today-I-Reaned/blob/master/Getter&Setter.md)
+- [Getter & Setter](https://github.com/HyeonWuJeon/Today-I-Reaned/blob/master/Java_Persistence_Api.md)
 <br>
 <br>
