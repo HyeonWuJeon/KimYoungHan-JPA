@@ -8,7 +8,7 @@
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/jpashop"/>
 <!--            중요 : h2dialect , jpa는 특정 데이터베이스에 종속되지않음. 데이터베이스 방언   -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 
@@ -16,7 +16,7 @@
             <property name="hibernate.show_sql" value="true"/> <!-- 콘솔창 쿼리문이보임 -->
             <property name="hibernate.format_sql" value="true"/> <!-- 포멧세팅 -->
             <property name="hibernate.use_sql_comments" value="true"/>  <!--쿼리문 사용 이유가 콘솔창에 뜸 -->
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>

@@ -1,13 +1,80 @@
-package com.hellojpa;
-
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
+package com;
 
 import javax.persistence.*;
-import javax.swing.*;
-import java.util.List;
+
+
 
 public class JpaMain {
     public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+
+        //실제 DB에저장하는 트랜잭션단위 (SERIVCE) 할때는 엔티티매니저를 꼭 만들어줘야한다.
+        EntityManager em = emf.createEntityManager(); //데이터베이스 커넥션을 받았다고생각
+
+        //트랜잭션생성
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        try{
+
+            tx.commit();
+        }catch(Exception e){
+            tx.rollback();
+        } finally{
+            em.close();
+        }
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+
 
         /**개념
          * emf? : 엔티티 매니저 팩토리는애플리케이션 로딩시점에 하나만만들어두면된다
@@ -15,7 +82,7 @@ public class JpaMain {
          * em? : 고객의 요청이 올때마다 계속 사용된다.
          * em의 경우 절대 쓰레드간의 공유x (사용하고 버려야된다)
          * Jpa의 모든 데이터변경은 트랜잭션 안에서 실행
-          */
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 
         //실제 DB에저장하는 트랜잭션단위 (SERIVCE) 할때는 엔티티매니저를 꼭 만들어줘야한다.
@@ -31,23 +98,23 @@ public class JpaMain {
 
             Member member = new Member();
 
-            /**
+
              * insert
-            //1. 비영속 상태
+            1. 비영속 상태
             Member member = new Member();
             member.setId(2L);//로우 값
             member.setName("HelloB");
 
-             //2.영속성 컨텍스트에 저장
+             2.영속성 컨텍스트에 저장
              em.persist(member); 디비에 저장이 안됨.
 
-//             3.영속성 컨텍스트에서 분리.
-//             em.detach(member);
-//
-//             4. db에서 삭제
-//             em.remove(member);
+             3.영속성 컨텍스트에서 분리.
+             em.detach(member);
 
-            */
+             4. db에서 삭제
+           em.remove(member);
+
+
 
             // find
             Member findMember = em.find(Member.class,1L);
@@ -75,7 +142,7 @@ public class JpaMain {
              * SQL
              * 데이터 베이스 테이블 대상 쿼리
              * 애플리케이션이 필요한 데이터만 db에서 불러오려면 결국 검색 조건이 포함된 sql문 사용
-             */
+
 //             List<Member> result = em.createQuery("select m from Member as m", Member.class)
 //                     .setFirstResult(5)
 //                     .setMaxResults(8)
@@ -103,4 +170,4 @@ public class JpaMain {
 
 /**
  * persist : db에저장하는것이 아닌 영속성 컨텍스트에 저장하는것이다.
- */
+             */
