@@ -33,19 +33,19 @@ public class JpaMain {
 
             /**
              * insert
-            1. 비영속 상태
+            //1. 비영속 상태
             Member member = new Member();
             member.setId(2L);//로우 값
             member.setName("HelloB");
 
-             2.영속성 컨텍스트에 저장
+             //2.영속성 컨텍스트에 저장
              em.persist(member); 디비에 저장이 안됨.
 
-             3.영속성 컨텍스트에서 분리.
-             em.detach(member);
-
-             4. db에서 삭제
-             em.remove(member);
+//             3.영속성 컨텍스트에서 분리.
+//             em.detach(member);
+//
+//             4. db에서 삭제
+//             em.remove(member);
 
             */
 
@@ -84,7 +84,7 @@ public class JpaMain {
 //               System.out.println(member.getName());
 //              }
 
-            tx.commit(); //해당시점에 db쿼리가 날라간다.
+            tx.commit(); //해당시점에 db쿼리가 날라간다. //트랜잭션이끝
 
 
         } catch(Exception e) {
