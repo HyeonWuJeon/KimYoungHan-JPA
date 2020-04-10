@@ -1,7 +1,9 @@
 package com;
 
-import javax.persistence.*;
+import com.hellojpa.domain.Order;
+import com.hellojpa.domain.OrderItem;
 
+import javax.persistence.*;
 
 
 public class JpaMain {
@@ -16,7 +18,18 @@ public class JpaMain {
         tx.begin();
 
         try{
+            Order order = new Order();
+            order.addOrderItem(new OrderItem());
 
+            /**
+             * 단방향으로 설계해도 양방향 조회가 가능하다.
+             */
+            Order order2 = new Order();
+            em.persist(order2);
+
+            OrderItem orderItem = new OrderItem();
+            orderItem.setOrder(order); // 양방향완료
+            em.persist(orderItem);
             tx.commit();
         }catch(Exception e){
             tx.rollback();
