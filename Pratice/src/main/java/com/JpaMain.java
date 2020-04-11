@@ -21,15 +21,17 @@ public class JpaMain {
             Order order = new Order();
             order.addOrderItem(new OrderItem());
 
+            em.flush();
+            em.clear();
             /**
              * 단방향으로 설계해도 양방향 조회가 가능하다.
              */
-            Order order2 = new Order();
-            em.persist(order2);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order); // 양방향완료
-            em.persist(orderItem);
+//            Order order2 = new Order();
+//            em.persist(order2);
+//
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setOrder(order); // 양방향완료
+//            em.persist(orderItem);
             tx.commit();
         }catch(Exception e){
             tx.rollback();
