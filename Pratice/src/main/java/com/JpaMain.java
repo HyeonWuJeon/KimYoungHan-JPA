@@ -1,5 +1,6 @@
 package com;
 
+import com.hellojpa.domain.Book;
 import com.hellojpa.domain.Order;
 import com.hellojpa.domain.OrderItem;
 
@@ -18,9 +19,9 @@ public class JpaMain {
         tx.begin();
 
         try{
-            Order order = new Order();
-            order.addOrderItem(new OrderItem());
-
+            Book book = new Book();
+            book.setName("JPA");
+            book.setActor("전현우");
             em.flush();
             em.clear();
             /**
