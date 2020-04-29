@@ -2,6 +2,8 @@ package com.hellojpa.domain;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.LAZY;
+
 /**
  *  orderfood
  * 1:n, n:1 로 풀어낸다
@@ -13,11 +15,11 @@ public class OrderItem extends BaseEntity {
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
