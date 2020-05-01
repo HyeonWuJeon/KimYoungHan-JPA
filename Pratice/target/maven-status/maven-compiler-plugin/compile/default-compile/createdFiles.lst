@@ -1,0 +1,9 @@
+com\hellojpa\domain\Category.class
+com\hellojpa\domain\DeliveryStatus.class
+com\hellojpa\domain\Item.class
+com\hellojpa\domain\Order.class
+com\JpaMain.class
+com\hellojpa\domain\OrderItem.class
+com\hellojpa\domain\OrderStatus.class
+com\hellojpa\domain\Delivery.class
+com\hellojpa\domain\Member.class

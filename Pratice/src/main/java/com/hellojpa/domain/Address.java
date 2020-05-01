@@ -1,0 +1,71 @@
+package com.hellojpa.domain;
+
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import java.util.Objects;
+
+@Embeddable
+public class Address {
+
+    @Column(length = 10)
+    private String city;
+    @Column(length = 20)
+    private String street;
+    @Column(length = 5)
+    private String zipcode;
+
+
+    public String fullAddress(){
+        return getCity()+" "+getStreet()+" "+getZipcode();
+    }
+    public boolean isValed(){
+        if(getCity() !=null || getStreet() !=null || getCity()!=null) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    private void setCity(String city) {
+        this.city = city;
+    }
+
+    private void setStreet(String street) {
+        this.street = street;
+    }
+
+    private void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        //getter 호출 , 프록시 호출문제시 직접접근 가능
+        return Objects.equals(getCity(), address.getCity()) &&
+                Objects.equals(getStreet(), address.getStreet()) &&
+                Objects.equals(getZipcode(), address.getZipcode());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCity(), getStreet(), getZipcode());
+    }
+}
