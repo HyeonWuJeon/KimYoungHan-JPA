@@ -1,39 +1,58 @@
 package com;
 
-import com.hellojpa.domain.Book;
-import com.hellojpa.domain.Order;
-import com.hellojpa.domain.OrderItem;
+import com.hellojpa.domain.*;
 
 import javax.persistence.*;
-
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
-
-        //실제 DB에저장하는 트랜잭션단위 (SERIVCE) 할때는 엔티티매니저를 꼭 만들어줘야한다.
-        EntityManager em = emf.createEntityManager(); //데이터베이스 커넥션을 받았다고생각
-
-        //트랜잭션생성
-        EntityTransaction tx = em.getTransaction();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello"); //팩토리생성
+        EntityManager em = emf.createEntityManager(); //팩토리 사용
+        EntityTransaction tx = em.getTransaction(); //트랜잭션 사용
         tx.begin();
 
+
+
         try{
-            Book book = new Book();
-            book.setName("JPA");
-            book.setActor("전현우");
-            em.flush();
-            em.clear();
-            /**
-             * 단방향으로 설계해도 양방향 조회가 가능하다.
-             */
-//            Order order2 = new Order();
-//            em.persist(order2);
+
+            Member member = new Member();
+            member.setName("test");
+            member.setId(1L);
+            em.persist(member);
+
+            TypedQuery<Member> query =em.createQuery("select m from Member m", Member.class); //타입정보를 확실히 알 경우
+            System.out.println("query = " + query);
+////            Query query2 =em.createQuery("select m.name,m.id from Member m", Member.class); //타입정보를 받을수 없을때
 //
-//            OrderItem orderItem = new OrderItem();
-//            orderItem.setOrder(order); // 양방향완료
-//            em.persist(orderItem);
-            tx.commit();
+//            //결과가 하나이상일때
+//            List<Member> member = query.getResultList(); //결과없을시 빈 리스트반환
+//            System.out.println("member = " + member);
+//            for(Member m: member){
+//                System.out.println(m.getName());
+//            }
+//            //결과가 하나일때
+//            Object result = query2.getSingleResult(); //결과 없을시에 : NoResultException
+//                                                      //둘 이상 : NotUniqueResult
+//            System.out.println(result);
+//
+//            //Spring Data Jpa 에서는 NoResultException을 방지하기위해 getSingleResult를 try catch 해준다
+//
+//            //이름 기준 바인딩
+//            TypedQuery<Member> query3 =em.createQuery("select m from Member m where m.name = :name", Member.class);
+//            query3.setParameter("name", "kim");
+//            Member SingleResult = query3.getSingleResult();
+//            System.out.println(SingleResult.getName());
+//
+//            //위치기준 바인딩
+//            TypedQuery<Member> query4 =em.createQuery("select m from Member m where m.name = ?1", Member.class);
+//            query4.setParameter(1,"kim");
+//            Member SingleResult2 = query3.getSingleResult();
+//            System.out.println(SingleResult.getName());
+        tx.commit();
         }catch(Exception e){
             tx.rollback();
         } finally{
@@ -41,6 +60,7 @@ public class JpaMain {
         }
 
     }
+
 
 }
 

@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class BaseEntity {
 
-    private String ccreateBy;
+    private String createBy;
     private LocalDateTime createDate;
     private String lastModifiedBy;
     private LocalDateTime lastModifiedDate;
 
-    public String getCcreateBy() {
-        return ccreateBy;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public void setCcreateBy(String ccreateBy) {
-        this.ccreateBy = ccreateBy;
+    public void setCeateBy(String createBy) {
+        this.createBy = createBy;
     }
 
     public LocalDateTime getCreateDate() {

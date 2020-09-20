@@ -5,14 +5,19 @@ import javax.persistence.*;
 
 
 @Entity
-public class Member extends BaseEntity {
+public class Member  {
     @Id @GeneratedValue
     @Column(name="member_id")
     private Long id;
+
     private String name;
 
     @Embedded
     private Address address;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    private Team teamId;
 
     public Long getId() {
         return id;
@@ -22,6 +27,8 @@ public class Member extends BaseEntity {
         this.id = id;
     }
 
+//    public Team getTeamId() {return teamId;}
+
     public String getName() {
         return name;
     }
@@ -29,6 +36,7 @@ public class Member extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+//    public void setTeamId(Team teamId){this.teamId=teamId;}
 
     public Address getAddress() {
         return address;
@@ -36,6 +44,16 @@ public class Member extends BaseEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+//                ", teamId=" + teamId +
+                '}';
     }
 }
 

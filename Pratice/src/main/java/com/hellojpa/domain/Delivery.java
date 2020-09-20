@@ -10,6 +10,7 @@ public class Delivery extends BaseEntity {
 
     @Id
     @GeneratedValue
+
     private Long id;
 
     @Embedded

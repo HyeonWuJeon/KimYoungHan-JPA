@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.CascadeType.REMOVE;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -16,9 +17,9 @@ public class Order extends BaseEntity {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "MEMBER_ID")
-    private Member member;
+//    @ManyToOne(fetch = LAZY)
+//    @JoinColumn(name = "MEMBER_ID")
+//    private Member member;
 
     private LocalDateTime orderDate;
 
@@ -26,7 +27,7 @@ public class Order extends BaseEntity {
     private OrderStatus status;
 
 
-    @OneToMany(mappedBy="order", cascade = ALL)
+    @OneToMany(mappedBy="order", orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToOne(fetch = LAZY, cascade = ALL)
@@ -34,6 +35,7 @@ public class Order extends BaseEntity {
     private Delivery delivery;
 
     public void addOrderItem(OrderItem orderItem){
+        //양방향 매핑 매우중요!
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
@@ -46,13 +48,13 @@ public class Order extends BaseEntity {
         this.id = id;
     }
 
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
+//    public Member getMember() {
+//        return member;
+//    }
+//
+//    public void setMember(Member member) {
+//        this.member = member;
+//    }
 
     public LocalDateTime getOrderDate() {
         return orderDate;
